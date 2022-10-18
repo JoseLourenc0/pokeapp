@@ -1,0 +1,19 @@
+.load-more-button {
+  width: 80%;
+  margin: 10px auto;
+}
+
+.loading-card {
+  width: 87%;
+  margin: 10px auto;
+
+  ion-thumbnail {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-around;
+}

@@ -1,0 +1,28 @@
+<ng-container *ngIf="!isLoading; else loading_card">
+  <ion-card class="ion-activatable">
+    <img *ngIf = 'image' [alt]="imageAlt ? imageAlt : title" [src]="image" />
+    <ion-card-header>
+      <ion-card-title *ngIf="title">{{ title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="description">
+      {{ description }}
+    </ion-card-content>
+    <ng-content></ng-content>
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-card>
+</ng-container>
+
+<ng-template #loading_card>
+  <ion-card>
+    <ion-thumbnail style="width: 116px; margin: 10px auto; height: 108px;">
+      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+    </ion-thumbnail>
+    <ion-card-header>
+      <ion-card-title>
+        <p>
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </p>
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ng-template>

@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid *ngIf="pokemons">
+
+    <ion-row>
+      <ion-col
+        *ngFor = 'let pokemon of pokemons; let i=index'
+        size="6"
+        size-md="4"
+        size-lg="2"
+      >
+        <poke-card
+          [title] = "pokemon.name"
+          [image]="pokemon['sprites']['front_default']"
+        >
+        <div class="buttons-container">
+          <ion-button>
+            <ion-icon slot="icon-only" name="search"></ion-icon>
+          </ion-button>
+          <ion-button color="danger">
+            <ion-icon slot="icon-only" name="heart"></ion-icon>
+          </ion-button>
+        </div>
+        </poke-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="isLoading">
+    <ion-row>
+      <ion-col size="6" size-md="4" size-lg="2">
+        <poke-card [isLoading]="true"></poke-card>
+      </ion-col>
+      <ion-col size="6" size-md="4" size-lg="2">
+        <poke-card [isLoading]="true"></poke-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button
+    class="load-more-button"
+    expand="block"
+    (click) = 'getData()'
+  >
+    Carregar Mais
+  </ion-button>
+</ion-content>

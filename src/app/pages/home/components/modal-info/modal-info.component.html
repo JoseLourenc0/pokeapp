@@ -1,0 +1,27 @@
+<ion-modal [isOpen]="pokemonInfo?.isModalOpen && getImages()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ pokemonInfo.name }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setOpen(false)">Fechar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <p>
+        Altura: {{ pokemonInfo.height }}
+      </p>
+      <p>
+        Peso: {{ pokemonInfo.weight }}
+      </p>
+      <p>
+        Habilidades: <span *ngFor="let skill of pokemonInfo?.abilities">{{ skill.ability?.name }}&nbsp;</span>
+      </p>
+      <div class="img-container">
+        <p>Imagens:</p>
+        <img *ngFor="let imageSource of pokemonSprites; let i=index" [src]="imageSource" [alt]="'sprite_' + i">
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

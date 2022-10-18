@@ -40,7 +40,7 @@ export class HomePage implements OnInit {
     return new Promise((resolve) => {
       this.apiService.getPokemonByName(pokemonName).subscribe({
         next: data => {
-          resolve(data);
+          resolve({...data, isModalOpen: false});
         }
       });
     });

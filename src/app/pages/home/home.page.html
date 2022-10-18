@@ -7,8 +7,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid *ngIf="pokemons">
 
+  <ion-grid *ngIf="pokemons">
     <ion-row>
       <ion-col
         *ngFor = 'let pokemon of pokemons; let i=index'
@@ -21,12 +21,13 @@
           [image]="pokemon['sprites']['front_default']"
         >
         <div class="buttons-container">
-          <ion-button>
+          <ion-button (click) = 'pokemon.isModalOpen = !pokemon.isModalOpen'>
             <ion-icon slot="icon-only" name="search"></ion-icon>
           </ion-button>
           <ion-button color="danger">
             <ion-icon slot="icon-only" name="heart"></ion-icon>
           </ion-button>
+          <poke-modal-info [pokemonInfo]="pokemon"></poke-modal-info>
         </div>
         </poke-card>
       </ion-col>
@@ -51,4 +52,5 @@
   >
     Carregar Mais
   </ion-button>
+
 </ion-content>

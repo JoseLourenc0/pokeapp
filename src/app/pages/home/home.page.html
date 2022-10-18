@@ -8,10 +8,21 @@
 
 <ion-content [fullscreen]="true">
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card style="width: 87%; margin: 10px auto">
+    <ion-item>
+      <ion-label position="floating">Pesquisar Pokemon</ion-label>
+      <ion-input (ionChange) = 'filterPokemon($event)' placeholder="Ex.: Pikachu"></ion-input>
+    </ion-item>
+  </ion-card>
+
   <ion-grid *ngIf="pokemons">
     <ion-row>
       <ion-col
-        *ngFor = 'let pokemon of pokemons; let i=index'
+        *ngFor = 'let pokemon of filteredPokemons; let i=index'
         size="6"
         size-md="4"
         size-lg="2"
@@ -20,15 +31,15 @@
           [title] = "pokemon.name"
           [image]="pokemon['sprites']['front_default']"
         >
-        <div class="buttons-container">
-          <ion-button (click) = 'pokemon.isModalOpen = !pokemon.isModalOpen'>
-            <ion-icon slot="icon-only" name="search"></ion-icon>
-          </ion-button>
-          <ion-button color="danger">
-            <ion-icon slot="icon-only" name="heart"></ion-icon>
-          </ion-button>
+          <div class="buttons-container">
+            <ion-button (click) = 'pokemon.isModalOpen = !pokemon.isModalOpen'>
+              <ion-icon slot="icon-only" name="search"></ion-icon>
+            </ion-button>
+            <ion-button color="danger" (click) = 'saveNewFavourite(pokemon.name)'>
+              <ion-icon slot="icon-only" [name]="pokemon.isFavourite ? 'heart' : 'heart-outline'"></ion-icon>
+            </ion-button>
+          </div>
           <poke-modal-info [pokemonInfo]="pokemon"></poke-modal-info>
-        </div>
         </poke-card>
       </ion-col>
     </ion-row>

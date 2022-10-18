@@ -2,7 +2,7 @@
   <ng-template>
     <ion-header>
       <ion-toolbar>
-        <ion-title>{{ pokemonInfo.name }}</ion-title>
+        <ion-title>{{ pokemonInfo.name | titlecase }}</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="setOpen(false)">Fechar</ion-button>
         </ion-buttons>

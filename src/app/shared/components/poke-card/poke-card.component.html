@@ -1,8 +1,8 @@
 <ng-container *ngIf="!isLoading; else loading_card">
   <ion-card class="ion-activatable">
-    <img *ngIf = 'image' [alt]="imageAlt ? imageAlt : title" [src]="image" />
+    <img class="center-content" [style]="imageStyle" *ngIf = 'image' [alt]="imageAlt ? imageAlt : title" [src]="image" />
     <ion-card-header>
-      <ion-card-title *ngIf="title">{{ title }}</ion-card-title>
+      <ion-card-title class="center-content" *ngIf="title">{{ title | titlecase }}</ion-card-title>
     </ion-card-header>
     <ion-card-content *ngIf="description">
       {{ description }}

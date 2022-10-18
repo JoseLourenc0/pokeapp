@@ -6,6 +6,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ng-container *ngIf="pokemons && pokemons.length > 0; else noData">
+
+    <ion-card style="width: 87%; margin: 10px auto">
+      <ion-item>
+        <ion-label position="floating">Pesquisar Pokemon</ion-label>
+        <ion-input (ionChange) = 'filterPokemon($event)' placeholder="Ex.: Pikachu"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-grid>
+      <ion-row *ngFor="let pokemon of filteredPokemons; let i=index">
+        <ion-col>
+          <poke-card
+            (click) = 'pokemon.isModalOpen = !pokemon.isModalOpen'
+            imageStyle="width: 120px"
+            [title] = "pokemon.name"
+            [image]="pokemon['sprites']['front_default']"
+          >
+          <poke-modal-info [pokemonInfo]="pokemon">
+            <ion-button color="danger" (click) = 'removeFavourite(pokemon)'>
+              Remover Pokémon dos favoritos
+            </ion-button>
+          </poke-modal-info>
+          </poke-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <ng-template #noData>
+    <ion-card>
+      <h6 style="text-align: center">
+        Nenhum pokemon favoritado ainda!
+      </h6>
+    </ion-card>
+  </ng-template>
 
 </ion-content>

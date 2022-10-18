@@ -33,4 +33,11 @@ export interface Pokemon {
   height: number;
   abilities: Ability[];
   isModalOpen?: boolean;
+  isFavourite: boolean;
+  dateAdded?: string;
+}
+
+export interface FavouritePokemon {
+  name: string;
+  dateAdded: Date;
 }

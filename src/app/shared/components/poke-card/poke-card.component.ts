@@ -10,6 +10,7 @@ export class PokeCardComponent implements OnInit {
   @Input() title?: string;
   @Input() description?: string;
   @Input() image?: string;
+  @Input() imageStyle?: string = '';
   @Input() imageAlt?: string;
   @Input() isLoading = false;
 
